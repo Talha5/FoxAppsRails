@@ -1,0 +1,41 @@
+<%= form_for([@statute_type, @text_entry], :url => {:action => @form_action}, :html => { :class => 'form-horizontal' }) do |f| %>
+  <% if @text_entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@text_entry.errors.count, "error") %> prohibited this text_entry from being saved:</h2>
+
+      <ul>
+      <% @text_entry.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :jurisdiction, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <% if 0 == 0%>
+        <%= collection_select :text_entry, :jurisdiction_id,  @jurisdictions, :id, :name, {}, { :class => 'form-control' } %>
+      <% else %>
+          <%= raw @text_entry.jurisdiction.name %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :text_value, :class => 'col-lg-2 control-label' %>
+      <div class="col-lg-10">
+        <%= f.text_area :text_value, :class => 'form-control tinymce' %>
+      </div>
+    </div>
+
+    <%= f.hidden_field :statute_type_id, :value => @statute_type.id %>
+
+  <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <%= f.submit 'Submit', :class => "btn btn-primary" %>
+      </div>
+    </div>
+<% end %>
+
+<%= tinymce %>

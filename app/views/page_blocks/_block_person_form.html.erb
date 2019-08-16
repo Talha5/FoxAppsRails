@@ -1,0 +1,87 @@
+<%= form_for(setup_block_person(@blockPerson), :url => @path, :html => { :multipart => true, :class => 'form-horizontal' } ) do |f| %>
+  <% if @blockPerson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@blockPerson.errors.count, "error") %> prohibited this Person from being saved:</h2>
+
+      <ul>
+      <% @blockPerson.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+  <div class='col-xs-12' style = "border:1px solid #033C73; margin-top:10px; margin-bottom:10px;">
+    <%= link_to show_content_pages_path(@blockPerson.content_page_id), :class => 'btn btn-danger', :style => 'float:right;margin-top: 10px;' do %>
+      <i class="fa fa-times-circle fa-lg"></i>
+    <% end %>
+
+    <h2> <% if !@blockPerson.id.nil? %> Updating Person with ID: <%= @blockPerson.id %> <% else %> New Person<% end %> </h2>
+    <p> Page: <%= @page.name %>, <%= @blockPerson.content_page_id %></p>
+
+    <div class="form-group">
+      <%= f.label :name, :class => 'col-lg-2 control-label' %>
+      <div class="col-lg-10">
+      <%= f.text_field :name, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :title, :class => 'col-lg-2 control-label' %>
+      <div class="col-lg-10">
+      <%= f.text_field :title, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email, :class => 'col-lg-2 control-label' %>
+      <div class="col-lg-10">
+      <%= f.text_field :email, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :phone, :class => 'col-lg-2 control-label' %>
+      <div class="col-lg-10">
+      <%= f.text_field :phone, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Page', :class => 'col-lg-2 control-label' %>
+      <div class="col-lg-10">
+      <%= f.text_field :url, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class ='form-group'>
+      <%= f.fields_for :picture do |p| %>
+        <%= p.label :photo, :class => 'col-lg-2 control-label' %>
+        <div class = 'col-lg-10'>
+          <% if @blockPerson.hasPicture %>
+            <p><%= @blockPerson.get_picture.photo_file_name %> </p>
+            <p><%= image_tag @blockPerson.picture.photo.url(:thumb) %></p>
+            <p><%= link_to 'Update New photo', create_pic_path(@page.id, @blockPerson.id), :remote => true, :class => 'btn btn-warning' %></p>
+          <% else %>
+            <%= p.file_field :photo %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= f.hidden_field :block_type_id, :value => @blockPerson.block_type_id %>
+    <%= f.hidden_field :content_page_id, :value => @blockPerson.content_page_id %>
+    <%= f.hidden_field :order_count, :value => @blockPerson.order_count %>
+
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2" style="margin-top: 50px;">
+        <%if @blockPerson.id.nil? %>
+          <%= f.submit 'Submit New Person', :class => "btn btn-primary" %>
+        <% else %>
+          <%= f.submit 'Update Person', :class => "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  </fieldset>
+<% end %>

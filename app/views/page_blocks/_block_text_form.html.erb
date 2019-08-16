@@ -1,0 +1,50 @@
+<%= form_for([@blockText], :url => @path, :html => { :class => 'form-horizontal' } ) do |f| %>
+  <% if @blockText.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@blockText.errors.count, "error") %> prohibited this Person from being saved:</h2>
+
+      <ul>
+      <% @blockText.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+  <div class='col-xs-12' style = "border:1px solid #033C73; margin-top:10px; margin-bottom:10px;">
+	<%= link_to show_content_pages_path(@blockText.content_page_id), :class => 'btn btn-danger', :style => 'float:right;margin-top: 10px;' do %>
+      <i class="fa fa-times-circle fa-lg"></i>
+    <% end %>
+
+    <h2> <% if !@blockText.id.nil? %> Updating Text with ID: <%= @blockText.id %><% else %> New Text Form<% end %> </h2>
+    <p> Page: <%= @page.name %>, <%= @blockText.content_page_id %> </p>
+    <p class="alert alert-info"> Note: In order to add a Phone Number or Email, you must click on the "add link" button. <br> Write the Phone Number or Email however you wish people to see it in the "Text to display" field, and in the URL field, please do the following: <br>
+      &emsp;For Phone Numbers: tel:+phone-number     Example: tel:+1-800-555-5555 <br>&emsp; (Uses dashes to separate the numbers.)<br>
+      &emsp;For Emails: mailto:email-address         Example: mailto:example@myDomain.com
+    </p>
+
+    <div class="form-group">
+      <%= f.label :content_value, :class => 'col-xs-12 control-label', :style => 'float:left;' %>
+      <div class="col-xs-12">
+        <%= f.text_area :content_value, :class => 'form-control tinymce' %>
+      </div>
+    </div>
+
+    <%= f.hidden_field :block_type_id, :value => @blockText.block_type_id %>
+    <%= f.hidden_field :content_page_id, :value => @blockText.content_page_id %>
+    <%= f.hidden_field :order_count, :value => @blockText.order_count %>
+
+    <div class="form-group">
+      <div class="col-lg-4 col-lg-offset-4" style="margin-top: 50px;">
+        <% if @blockText.id.nil? %>
+          <%= f.submit 'Submit New Text', :class => "btn btn-primary" %>
+        <% else %>
+          <%= f.submit 'Update Text', :class => "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  </fieldset>
+<% end %>
+
+<%= tinymce %>

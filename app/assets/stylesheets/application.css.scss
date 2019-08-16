@@ -1,0 +1,23 @@
+@import "variables";
+
+@import "bootswatch";
+
+@import "twitter/bootstrap";
+
+@import "font-awesome";
+
+@import "jquery.gritter";
+
+/*select button*/
+#blockTypeSelect {
+	select {
+		font-size: 25px;
+		margin-top: 9px;
+		display: block !important;
+	}
+}
+
+/* table hover, hover color */
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+	background-color: #EAF2FA;
+}

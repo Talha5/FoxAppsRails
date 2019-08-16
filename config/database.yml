@@ -1,0 +1,44 @@
+
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: fox_apps_development
+  pool: 5
+  username: root
+  password: Spn16058!
+  host: localhost
+  port: 3306
+  
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: fox_apps_test
+  pool: 5
+  username: root
+  password: Spn16058!
+  host: localhost
+  port: 3306
+  
+staging:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: fox_apps_staging
+  pool: 10
+  username: root
+  password: Spn16058!
+  host: localhost
+  port: 3306
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: fox_apps_production
+  pool: 10
+  username: root
+  password: Spn16058!
+  host: localhost
+  port: 3306

@@ -1,0 +1,1 @@
+$("#showBlock<%= @blockText.id %>").html("<%=escape_javascript(render :partial=>'page_blocks/block_text_form',locals: { blockText: @blockText, page: @page} )%>");

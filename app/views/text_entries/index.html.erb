@@ -1,0 +1,27 @@
+<h1>Listing text_entries</h1>
+
+<table>
+  <tr>
+    <th>Statute type</th>
+    <th>Jurisdiction</th>
+    <th>Text value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @text_entries.each do |text_entry| %>
+  <tr>
+    <td><%= text_entry.statute_type_id %></td>
+    <td><%= text_entry.jurisdiction_id %></td>
+    <td><%= text_entry.text_value %></td>
+    <td><%= link_to 'Show', text_entry %></td>
+    <td><%= link_to 'Edit', edit_text_entry_path(text_entry) %></td>
+    <td><%= link_to 'Destroy', text_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Text entry', new_text_entry_path %>

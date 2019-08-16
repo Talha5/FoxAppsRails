@@ -1,0 +1,47 @@
+<% if !notice.nil? %>
+<div class="col-xs-12 col-lg-10 col-lg-offset-1 alert alert-success">
+	 <button type="button" class="close" data-dismiss="alert">&times;</button>
+	<p id="notice"><%= notice %></p>
+</div>
+<% end %>
+
+<div class="col-xs-12 col-lg-10 col-lg-offset-1 form form-horizontal">
+	<div class="col-xs-12 form-group" style="margin-bottom:30px;">
+		<h3><label class="control-label col-xs-2">Name:</label>
+			<div id='pageName' class="col-xs-9 form-control-static"><%= @page.name %>
+	  	<!--
+	  		<% if !@editingBlock %>
+	  			<span style='float:right;'><%= link_to 'Edit Name', edit_content_pages_path(@page.id), :remote => true, :class => 'btn btn-success' %></span>
+			<% end %>
+		-->
+			</div>
+		</h3>
+	</div>
+
+	<% if !@blocks.nil? %>
+		<% @blocks.each do |block| %>
+			<div id="showBlock<%= block.id %>" class="col-xs-12 col-lg-10 col-lg-offset-1">
+				<% if block.block_type_id == 1 %>
+					<%= render :template => 'page_blocks/show_block_person', :locals => {:@blockPerson => block} %>
+				<% else %>
+					<%= render :template => 'page_blocks/show_block_text', :locals => {:@blockText => block } %>
+				<% end %>
+			</div>
+		<% end %>
+	<% else %>
+		<div class="col-xs-12 col-lg-10 col-lg-offset-1 form-group">
+			<p class="form-control-static" style="text-align:center;font-size:15px;"> No content has been added yet. </p>
+		</div>
+	<% end %>
+	<div id="newPageBlock" class="col-xs-12 col-lg-10 col-lg-offset-1 page-block">
+	</div>
+	<div class="col-xs-12 col-lg-8 col-lg-offset-2" style="margin-top:10px;">
+		<% if !@editingPage %>
+			<%= link_to 'Add New Block', new_page_blocks_path(@page.id), :class => 'btn btn-success', :remote => true, :style => 'float:right;' %>
+		<% end %>
+	</div>
+
+	<div class="col-xs-12 col-lg-10 col-lg-offset-1" style="text-align:center; margin-top:50px;margin-bottom:30px;">
+		<%= link_to 'Back',content_pages_path, :class => 'btn btn-warning' %>
+	</div>
+</div>

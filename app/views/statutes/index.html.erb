@@ -1,0 +1,23 @@
+<h1>Listing statutes</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @statutes.each do |statute| %>
+  <tr>
+    <td><%= statute.name %></td>
+    <td><%= link_to 'Show', statute %></td>
+    <td><%= link_to 'Edit', edit_statute_path(statute) %></td>
+    <td><%= link_to 'Destroy', statute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Statute', new_statute_path %>

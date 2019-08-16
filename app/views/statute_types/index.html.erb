@@ -1,0 +1,23 @@
+<h1>Listing statute_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @statute_types.each do |statute_type| %>
+  <tr>
+    <td><%= statute_type.name %></td>
+    <td><%= link_to 'Show', statute_type %></td>
+    <td><%= link_to 'Edit', edit_statute_type_path(statute_type) %></td>
+    <td><%= link_to 'Destroy', statute_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Statute type', new_statute_type_path %>

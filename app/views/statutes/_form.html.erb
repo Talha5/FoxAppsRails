@@ -1,0 +1,49 @@
+<%= form_for([@statute_type, @statute], :url => {:action => @form_action}, :html => { :class => 'form-horizontal' } ) do |f| %>
+  <% if @statute.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@statute.errors.count, "error") %> prohibited this statute from being saved:</h2>
+
+      <ul>
+      <% @statute.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <legend>Statute</legend>
+    <div class="form-group">
+      <%= f.label :name, :class => 'col-lg-2 control-label' %>
+      <div class="col-lg-10">
+        <%= f.text_field :name, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :jurisdiction, :class => 'col-lg-2 control-label' %>
+      <div class="col-lg-10">
+        <% if 0 == 0%>
+          <%= collection_select :statute, :jurisdiction_id,  @jurisdictions, :id, :name, {}, { :class => 'form-control' } %>
+        <% else %>
+            <%= raw @statute.jurisdiction.name %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :url, :class => 'col-lg-2 control-label' %>
+      <div class="col-lg-10">
+        <%= f.text_field :url, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <%= f.hidden_field :statute_type_id, :value => @statute.statute_type_id %>
+
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <%= f.submit 'Submit', :class => "btn btn-primary" %>
+      </div>
+    </div>
+  </fieldset>
+
+<% end %>

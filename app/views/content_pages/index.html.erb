@@ -1,0 +1,22 @@
+<h1>Listing Pages</h1>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @pages.each do |page| %>
+    <tr>
+      <td><%= page.name %></td>
+      <td><%= link_to 'Edit', show_content_pages_path(page.id), :class => 'btn btn-primary' %>
+        <!-- <%= link_to 'Delete', destroy_content_pages_path(page.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %> -->
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<!-- <%= link_to 'Add New Page', content_pages_new_path, :class => 'btn btn-success', :style => 'margin-bottom:30px;' %> -->

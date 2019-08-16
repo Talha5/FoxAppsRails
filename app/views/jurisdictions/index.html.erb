@@ -1,0 +1,24 @@
+<h2>Jurisdictions</h2>
+
+<table class="table table-striped table-bordered table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Short Name</th>
+    <th>Capitol Zip</th>
+    <th></th>
+  </tr>
+
+<% @jurisdictions.each do |jurisdiction| %>
+  <tr>
+    <td><%= jurisdiction.name %></td>
+    <td><%= jurisdiction.short_name %></td>
+    <td><%= jurisdiction.zip %></td>
+    <td><%= link_to 'Edit', edit_jurisdiction_path(jurisdiction), :class => "btn btn-primary btn-xs" %>
+    <%= link_to 'Destroy', jurisdiction, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-xs" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Jurisdiction', new_jurisdiction_path, :class => "btn btn-success" %>

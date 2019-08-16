@@ -1,0 +1,42 @@
+<%= form_for([@block], :url => {:action => @form_action}, :remote => true, :html => { :class => 'form-horizontal' } ) do |f| %>
+  <% if @block.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@block.errors.count, "error") %> prohibited this block from being saved:</h2>
+
+      <ul>
+      <% @block.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <div class='col-xs-12 col-lg-10 col-lg-offset-1' style = "border:1px solid #033C73; margin-top:10px;">
+      <%= link_to show_content_pages_path(@block.content_page_id), :class => 'btn btn-danger', :style => 'float:right;margin-top: 10px;' do %>
+        <i class="fa fa-times-circle fa-lg"></i>
+      <% end %>
+
+    	<h2> New Block </h2>
+      
+
+      <%= f.label (:block_type_id), :class => 'control-label col-xs-3' %>
+      <div class='col-xs-9' id="blockTypeSelect">
+        <%= f.select :block_type_id, @blockTypes do %>
+          <% @blockTypes.each do |type| %>
+            <%= content_tag(:option, type.first, value: type.last) %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <%= f.hidden_field :content_page_id, :value => @block.content_page_id %>
+      <%= f.hidden_field :order_count, :value => @block.order_count %>
+
+      <div class="form-group">
+        <div class="col-lg-4 col-lg-offset-4" style="margin-top: 50px;" style="text-align:center">
+          <%= f.submit 'Next', :class => "btn btn-success" %>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+<% end %>

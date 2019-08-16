@@ -1,0 +1,2 @@
+console.log('made it to new block');
+$("#newPageBlock").html("<%=escape_javascript(render :partial=>'page_blocks/form',locals: { block: @block} )%>");
