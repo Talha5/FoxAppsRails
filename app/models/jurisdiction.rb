@@ -7,10 +7,13 @@ class Jurisdiction < ActiveRecord::Base
   def geocode_address
   	!zip ? return : nil
     #geo = Geokit::Geocoders::MultiGeocoder.geocode(zip)
-    geo = Geokit::Geocoders::GoogleGeocoder3.geocode(zip)
-    puts zip
-    puts geo
-    self.lat, self.lng = nil,nil if !geo.success
-    self.lat, self.lng = geo.lat,geo.lng if geo.success
+    begin
+      geo = Geokit::Geocoders::GoogleGeocoder3.geocode(zip)
+      puts zip
+      puts geo
+      self.lat, self.lng = geo.lat,geo.lng
+    rescue Geokit::Geocoders::GeocodeError
+      self.lat, self.lng = nil,nil
+    end
   end
 end
